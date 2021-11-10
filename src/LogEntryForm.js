@@ -27,9 +27,9 @@ function LogEntryForm({ location, onClose }) {
 				<label>
 					Title: <input autoComplete="off" className="LogEntryForm__input" name="title" type="text" ref={register} required />
 				</label>
-				<label>
+				{/* <label>
 					Comments: <textarea className="LogEntryForm__input" name="comments" rows={3} ref={register}></textarea>
-				</label>
+				</label> */}
 				<label>
 					Description: <textarea className="LogEntryForm__input" name="description" rows={3} ref={register}></textarea>
 				</label>

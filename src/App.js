@@ -25,7 +25,7 @@ const App = () => {
   }, []);
   const showAddMarkerPopup = event => {
     const [longitude, latitude] = event.lngLat;
-    setShowPopup({});
+    // setShowPopup({});
     setAddEntryLocation({
       latitude,
       longitude
@@ -40,6 +40,15 @@ const App = () => {
       onDblClick={showAddMarkerPopup}
       doubleClickZoom={false}
     >
+      
+      {/* <Popup
+        closeButton={true}
+        closeOnClick={false}
+        dynamicPosition={true}
+        style={{ zIndex: '1000' }}
+      >
+        <h2>Yoo</h2>
+      </Popup> */}
       {logEntries.map(entry => (
         <React.Fragment key={entry._id}>
           <Marker
@@ -55,8 +64,7 @@ const App = () => {
               }}
             />
           </Marker>
-          {
-            showPopup[entry._id] && (
+          {showPopup[entry._id] && (
               <Popup
                 latitude={entry.latitude}
                 longitude={entry.longitude}
@@ -89,7 +97,9 @@ const App = () => {
               </Popup>
             )
           }
-          {addEntryLocation && (
+        </React.Fragment>
+      ))}
+      {addEntryLocation && (
             <>
               <Marker
                 latitude={addEntryLocation.latitude}
@@ -112,17 +122,16 @@ const App = () => {
                 anchor="top"
               >
                 <div style={{ width: '40vw' }}>
-                  <LogEntryForm onClose={() => {
-                    setAddEntryLocation(null);
-                    getEntries();
-                  }} location={addEntryLocation} />
+                  <LogEntryForm
+                    onClose={() => {
+                      setAddEntryLocation(null);
+                      getEntries();
+                    }}
+                    location={addEntryLocation} />
                 </div>
               </Popup>
             </>
           )}
-        </React.Fragment>
-      ))
-      }
     </ReactMapGL>
   );
 }
